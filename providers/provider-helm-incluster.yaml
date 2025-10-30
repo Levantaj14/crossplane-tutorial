@@ -10,20 +10,22 @@ kind: ClusterRoleBinding
 metadata:
   name: crossplane-provider-helm
 subjects:
-- kind: ServiceAccount
-  name: crossplane-provider-helm
-  namespace: crossplane-system
+  - kind: ServiceAccount
+    name: crossplane-provider-helm
+    namespace: crossplane-system
 roleRef:
   kind: ClusterRole
   name: cluster-admin
   apiGroup: rbac.authorization.k8s.io
 ---
-apiVersion: pkg.crossplane.io/v1alpha1
-kind: ControllerConfig
+apiVersion: pkg.crossplane.io/v1beta1
+kind: DeploymentRuntimeConfig
 metadata:
   name: crossplane-provider-helm
 spec:
-  serviceAccountName: crossplane-provider-helm
+  serviceAccountTemplate:
+    metadata:
+      name: crossplane-provider-helm
 ---
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
@@ -31,5 +33,5 @@ metadata:
   name: crossplane-provider-helm
 spec:
   package: xpkg.upbound.io/crossplane-contrib/provider-helm:v0.17.0
-  controllerConfigRef:
+  runtimeConfigRef:
     name: crossplane-provider-helm
