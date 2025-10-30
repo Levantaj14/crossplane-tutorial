@@ -13,7 +13,7 @@ spec:
   resources:
   - name: sql
     base:
-      apiVersion: sql.gcp.upbound.io/v1beta1
+      apiVersion: sql.gcp.upbound.io/v1beta2
       kind: DatabaseInstance
       spec:
         forProvider:
@@ -37,7 +37,7 @@ spec:
           deletionProtection: false
   - name: user
     base:
-      apiVersion: sql.gcp.upbound.io/v1beta1
+      apiVersion: sql.gcp.upbound.io/v1beta2
       kind: User
       spec:
         forProvider:
