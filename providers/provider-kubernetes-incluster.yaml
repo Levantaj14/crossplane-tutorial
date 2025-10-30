@@ -23,16 +23,9 @@ kind: DeploymentRuntimeConfig
 metadata:
   name: crossplane-provider-kubernetes
 spec:
-  deploymentTemplate:
-    spec:
-      selector: {}
-      template:
-        spec:
-          containers:
-            - name: manager
-              securityContext:
-                runAsUser: 0
-          serviceAccountName: crossplane-provider-kubernetes
+  serviceAccountTemplate:
+    metadata:
+      name: crossplane-provider-kubernetes
 ---
 apiVersion: pkg.crossplane.io/v1
 kind: Provider
